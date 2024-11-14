@@ -17,8 +17,11 @@ public class PlayerController : MonoBehaviour
     int isMove;
     int isIdle;
     IEnumerator moveCoroutine;
+    IEnumerator jumpCoroutine;
     float moveDuration = 0.02f;
+    float jumpDuration = 0.05f;
     float moveCount;
+    float jumpCount;
     
 
     // Start is called before the first frame update
@@ -88,8 +91,23 @@ public class PlayerController : MonoBehaviour
         if (GameManager.instance.IsGameOver) return;
         if (context.phase == InputActionPhase.Performed)
         {
-            transform.position += Vector3.up;
+            Vector3 input = Vector3.up;
+            jumpCoroutine = JumpCoroutine(input);
+            StartCoroutine(jumpCoroutine);
         }
+    }
+
+    public IEnumerator JumpCoroutine(Vector3 input)
+    {
+        jumpCount = 0;
+        while (jumpCount < 1)
+        {
+            transform.position += input * jumpDuration;
+            jumpCount += jumpDuration;
+            if (jumpCount >= 1) transform.position -= input;
+            yield return null;
+        }
+
     }
 
     public void Hit() 
