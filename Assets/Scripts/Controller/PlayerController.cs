@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,8 +12,13 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     string isDieTr = "Die";
     string isMoveTr = "isMove";
+    string isIdleTr = "isIdle";
     int isDie;
     int isMove;
+    int isIdle;
+    IEnumerator moveCoroutine;
+    float moveDuration = 0.02f;
+    float moveCount;
     
 
     // Start is called before the first frame update
@@ -22,6 +28,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         isDie = Animator.StringToHash(isDieTr);
         isMove = Animator.StringToHash(isMoveTr);
+        isIdle = Animator.StringToHash(isIdleTr);
     }
 
     // Update is called once per frame
@@ -32,16 +39,31 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context) 
     {
+        if (GameManager.instance.IsGameOver)  return; 
         Vector3 input = context.ReadValue<Vector3>();
         if (input.magnitude > 1) return;
         if (context.phase == InputActionPhase.Performed)
         {
-            animator.SetBool(isMove, true);
-            transform.position += input;
+           
+            moveCoroutine = MoveCoroutine(input);
+            StartCoroutine(moveCoroutine);
+            
             if (input.y > 0)  GameManager.instance.Score++; 
             Rotate(input);
             
         } 
+    }
+
+    public IEnumerator MoveCoroutine(Vector3 input) 
+    {
+        moveCount = 0;
+        while (moveCount < 1) 
+        {
+            transform.position += input*moveDuration;
+            moveCount += moveDuration;
+            yield return null;
+        }
+        
     }
 
     private void Rotate(Vector3 input)
@@ -63,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        
+        if (GameManager.instance.IsGameOver) return;
         if (context.phase == InputActionPhase.Performed)
         {
             transform.position += Vector3.up;
@@ -73,6 +95,9 @@ public class PlayerController : MonoBehaviour
     public void Hit() 
     {
         animator.SetBool(isDie,true);
+        animator.SetBool(isIdle,false);
         GameManager.instance.GameOver();
     }
+
+    
 }

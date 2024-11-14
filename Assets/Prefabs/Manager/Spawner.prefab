@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6524449644636888065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3258575608728672114}
+  - component: {fileID: 7388229407143131652}
+  - component: {fileID: 4090900095739541083}
+  - component: {fileID: 5663959182079308624}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3258575608728672114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6524449644636888065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7388229407143131652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6524449644636888065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fb6fd2604731341957f2e67c942311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinDuration: 1
+  MaxDuration: 3
+--- !u!114 &4090900095739541083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6524449644636888065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ee58ccb5407b2479a1138e65e09318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pools:
+  - Name: Car0
+    Prefab: {fileID: 6681383704943951390, guid: 89fafee97e035704aa7c272126e0d9c5, type: 3}
+    Size: 15
+  - Name: Car1
+    Prefab: {fileID: 4601479978068331422, guid: df653d0a5be44ef4ca4b0f82d986db63, type: 3}
+    Size: 15
+  - Name: Car2
+    Prefab: {fileID: 6681383704943951390, guid: 89fafee97e035704aa7c272126e0d9c5, type: 3}
+    Size: 15
+  - Name: Car3
+    Prefab: {fileID: 4601479978068331422, guid: df653d0a5be44ef4ca4b0f82d986db63, type: 3}
+    Size: 15
+  - Name: Item0
+    Prefab: {fileID: 5434986527085010141, guid: 19c4642e58ba2c641bb414a7a88ec4db, type: 3}
+    Size: 8
+  - Name: Item1
+    Prefab: {fileID: 3557212653529615553, guid: b3f3a02f9a1526545aafd417828d5fa8, type: 3}
+    Size: 8
+--- !u!114 &5663959182079308624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6524449644636888065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928dc0b3414e4f149bac785f6d8a2750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinDuration: 3
+  MaxDuration: 5
